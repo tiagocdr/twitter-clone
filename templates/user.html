@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div class='user'>
+        <h2>{{user}}</h2>
+        {% if not is_follower %}
+        <button><a href="/follow/{{user.id}}">Follow</a></button>
+        {% else %}
+        <button><a href="/unfollow/{{user.id}}">Unfollow</a></button>
+        {% endif %}
+        <div class="container">
+            {% for t in tweets %}
+            <div class="tweet">
+                <p>{{t.user}}</p>
+                <p>{{t.content}}</p>
+                <p>{{t.timestamp}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

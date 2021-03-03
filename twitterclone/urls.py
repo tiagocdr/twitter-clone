@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from authentication.views import login_view, signup_view
-from twitteruser.views import landing_view
+from twitteruser.views import landing_view, user_view, follow_user, unfollow_user
 from tweet.views import post_tweet_view
 urlpatterns = [
     path('', landing_view, name='home'),
+    path('user/<int:user_id>/', user_view,),
+    path('follow/<int:user_id>/', follow_user,),
+    path('unfollow/<int:user_id>/', unfollow_user,),
     path('tweetsomething/', post_tweet_view),
     path('signup/', signup_view),
     path('login/', login_view), 
