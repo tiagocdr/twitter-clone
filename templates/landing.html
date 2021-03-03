@@ -1,8 +1,10 @@
 {% extends 'index.html' %}
 {% block content %}
 {% if request.user.is_authenticated %}
-<h2>Welcome back <a href="/user/{{request.user.id}}">{{request.user}}</a></h2>
-<p>followers: {{followers}}</p>
+<div class='user-card'>
+    <h2>Welcome back <a href="/user/{{request.user.id}}">{{request.user}}</a></h2>
+    <p>followers: {{followers}}</p>
+</div>
 {% else %}
 <h2>Welcome!</h2>
 {% endif %}

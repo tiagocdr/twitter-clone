@@ -10,9 +10,11 @@
     <header>
         <h1>Twitter Clone</h1>
         <nav>
+            {% if request.user.is_authenticated %}
             <a href="/">Home</a>
             <a href="/tweetsomething/">Tweet</a>
-            {% if not request.user.is_authenticated %}
+            <a href="/logout/">Logout</a>
+            {% else %}
             <a href="/login/">Login</a>
             <a href="/signup/">SignUp</a>
             {% endif %}

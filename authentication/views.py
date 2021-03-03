@@ -1,6 +1,6 @@
-from django.shortcuts import render, HttpResponseRedirect, reverse
+from django.shortcuts import redirect, render, HttpResponseRedirect, reverse
 from authentication.form import LoginForm, SignUpForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from twitteruser.models import TwitterUser
 # Create your views here.
 
@@ -34,3 +34,7 @@ def signup_view(request):
             
     form = SignUpForm()
     return render(request, 'form.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect(reverse('home'))
