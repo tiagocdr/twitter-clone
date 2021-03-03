@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+{% block content %}
+    <div class='forms'>
+        {% if request.path == '/signup/' %}
+        <h2>Sign up now!</h2>
+        {% else %}
+        <h2>Login now!</h2>
+        {% endif %}
+        <form action="" method="post">
+            {%  csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value = 'Share'>
+        </form>
+        {% if request.path == '/signup/' %}
+        <a href="/login/">Already a member? Login</a>
+        {% else %}
+        <a href="/signup/">New Member ? Sign Up</a>
+        {% endif %}
+    </div>
+{% endblock %}
