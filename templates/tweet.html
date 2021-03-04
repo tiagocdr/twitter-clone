@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block content %}
+<div>
+<h2> by : <a href="/user/{{tweet.user.id}}">{{tweet.user}}</a></h2>    
+<p>
+    {{tweet.content}}
+</p>
+<p>
+    {{tweet.timestamp}}
+</p>
+</div>
+{% endblock %}

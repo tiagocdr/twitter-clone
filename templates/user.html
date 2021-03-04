@@ -2,10 +2,13 @@
 {% block content %}
     <div class='user'>
         <h2>{{user}}</h2>
-        {% if not is_follower %}
-        <button><a href="/follow/{{user.id}}">Follow</a></button>
-        {% else %}
-        <button><a href="/unfollow/{{user.id}}">Unfollow</a></button>
+        <p>Number of tweets: {{num_tweets}}</p>
+        {% if not request.user == user %}
+            {% if not is_follower %}
+            <button><a href="/follow/{{user.id}}">Follow</a></button>
+            {% else %}
+            <button><a href="/unfollow/{{user.id}}">Unfollow</a></button>
+            {% endif %}
         {% endif %}
         <div class="container">
             {% for t in tweets %}
