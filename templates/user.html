@@ -13,9 +13,10 @@
         <div class="container">
             {% for t in tweets %}
             <div class="tweet">
-                <p>{{t.user}}</p>
+                <p><a href="/user/{{t.user.id}}">{{t.user}}</a></p>
                 <p>{{t.content}}</p>
                 <p>{{t.timestamp}}</p>
+                <p><a href="/tweet/{{t.id}}">Detail</a></p>
             </div>
             {% endfor %}
         </div>
