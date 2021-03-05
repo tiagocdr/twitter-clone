@@ -11,7 +11,8 @@ from django.contrib.auth.decorators import login_required
 # on the context
 @login_required
 def landing_view(request):
-    tweets = Tweet.objects.all()
+    tweets = Tweet.objects.all().order_by('-timestamp')
+    tweets = [tweet for tweet in tweets if tweet.user in request.user.following.all() or request.user == tweet.user]
     context = {'tweets': tweets}
     if request.user.is_authenticated:
         user = TwitterUser.objects.get(id=request.user.id)
@@ -20,15 +21,13 @@ def landing_view(request):
             mentioned_user=request.user,
             is_read=False
             )
-        print(mentions)
         context.update({'followers': followers, 'notis': len(mentions)})
     return render(request, 'landing.html', context)
 
 def user_view(request, user_id):
     user = TwitterUser.objects.get(id=user_id)
-    tweets = Tweet.objects.filter(user=user)
+    tweets = Tweet.objects.filter(user=user).order_by('-timestamp')
     is_follower = request.user in user.followers.all()
-    print(is_follower)
     context = {
         'tweets': tweets,
         'user': user,

@@ -13,11 +13,12 @@ def notification_view(request):
     mentions = Notifications.objects.filter(
             mentioned_user=request.user,
             is_read=False
-            )
+            ).order_by('-timestamp')
     for m in mentions:
         m.is_read = True
         m.save()
     context = { 
         'tweets': mentions,
+        'notis': 0
     }
     return render(request, 'notifications.html', context)

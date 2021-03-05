@@ -9,13 +9,15 @@ def login_view(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = authenticate(
+            user = authenticate(request,
                 username=data['username'],
                 password=data['password']
                 )
             if user:
                 login(request, user)
                 return HttpResponseRedirect(request.GET.get('next', reverse('home')))
+            else: 
+                print('some wong')
     form = LoginForm()
     return render(request, 'form.html', {'form': form})
 
@@ -24,13 +26,14 @@ def signup_view(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            user = TwitterUser.objects.create(
+            user = TwitterUser.objects.create_user(
                 username=data['username'], password=data['password']
                 )
-            login(request, user)
-            return HttpResponseRedirect(
-                request.GET.get('next', reverse('home'))
-                )
+            if user:
+                login(request, user)
+                return HttpResponseRedirect(
+                    request.GET.get('next', reverse('home'))
+                    )
             
     form = SignUpForm()
     return render(request, 'form.html', {'form': form})

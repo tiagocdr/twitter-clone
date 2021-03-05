@@ -7,9 +7,9 @@
     <div class="container">
         {% for t in tweets %}
         <div class="tweet">
-            <p><a href="/user/{{t.user.id}}">{{t.tweet.user}}</a></p>
+            <p><a href="/user/{{t.tweet.user.id}}">{{t.tweet.user}}</a></p>
             <p>{{t.tweet.content}}</p>
-            <p>{{t.tweet.timestamp}}</p>
+            <p>{{t.timestamp}}</p>
             <a href="/tweet/{{t.id}}">Detail</a>
         </div>
         {% endfor %}
