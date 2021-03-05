@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% block content %}
+<div>
+    <h2>
+        Notification panel
+    </h2>
+    <div class="container">
+        {% for t in tweets %}
+        <div class="tweet">
+            <p><a href="/user/{{t.user.id}}">{{t.tweet.user}}</a></p>
+            <p>{{t.tweet.content}}</p>
+            <p>{{t.tweet.timestamp}}</p>
+            <a href="/tweet/{{t.id}}">Detail</a>
+        </div>
+        {% endfor %}
+        {% if not tweets %}
+        <p>Nothing new to show here...</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

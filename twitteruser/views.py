@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from twitteruser.models import TwitterUser
 from tweet.models import Tweet
+from notification.models import Notifications
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 # request.user.id
@@ -15,7 +16,12 @@ def landing_view(request):
     if request.user.is_authenticated:
         user = TwitterUser.objects.get(id=request.user.id)
         followers = len(user.followers.all())
-        context.update({'followers': followers})
+        mentions = Notifications.objects.filter(
+            mentioned_user=request.user,
+            is_read=False
+            )
+        print(mentions)
+        context.update({'followers': followers, 'notis': len(mentions)})
     return render(request, 'landing.html', context)
 
 def user_view(request, user_id):
