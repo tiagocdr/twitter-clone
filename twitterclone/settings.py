@@ -126,3 +126,6 @@ AUTH_USER_MODEL = 'twitteruser.TwitterUser'
 LOGIN_URL = '/login/'
 DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]

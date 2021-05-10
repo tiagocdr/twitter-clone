@@ -1,11 +1,26 @@
 {% extends 'index.html' %}
 {% block content %}
-    <div class='forms'>
-        <h2>Tweet Something...</h2>
+    <!-- <div class='forms'>
         <form action="" method="post">
             {%  csrf_token %}
             {{ form.as_p }}
             <input type="submit" value = 'Share'>
         </form>
+    </div> -->
+    <div style="display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;">
+
+        <h2>Tweet Something...</h2>
+        <form action="" method="post" id="contactForm" name="sentMessage" >
+            <div >
+                {%  csrf_token %}
+                {{ form.as_p }}
+                <br />
+                <div id="success"></div>
+                <button class="btn btn-primary" id="sendMessageButton" type="submit">Send</button>
+            </div>
+        </form>
     </div>
-{% endblock %}
+        {% endblock %}

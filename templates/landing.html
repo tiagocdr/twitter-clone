@@ -1,21 +1,24 @@
 {% extends 'index.html' %}
 {% block content %}
-{% if request.user.is_authenticated %}
-<div class='user-card'>
-    <h2>Welcome back <a href="/user/{{request.user.id}}">{{request.user}}</a></h2>
-    <p>followers: {{followers}}</p>
-</div>
-{% else %}
-<h2>Welcome!</h2>
-{% endif %}
+
 <div class="container">
     {% for t in tweets %}
-    <div class="tweet">
-        <p><a href="/user/{{t.user.id}}">{{t.user}}</a></p>
-        <p>{{t.content}}</p>
-        <p>{{t.timestamp}}</p>
-        <a href="/tweet/{{t.id}}">Detail</a>
-    </div>
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-preview">
+                <a href="/user/{{t.user.id}}">
+                    <h2 class="post-title">{{t.title}}</h2>
+                    <h3 class="post-subtitle">by {{t.user.username}}</h3>
+                </a>
+                <p class="post-meta">
+                  {{t.timestamp}}  
+                </p>
+                <p>{{t.content}}</p>
+                <a href="/tweet/{{t.id}}">Detail</a>
+            </div>
+        </div>
+        </div>
+        <hr />
     {% endfor %}
 </div>
 {% endblock %}
