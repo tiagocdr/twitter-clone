@@ -32,8 +32,10 @@ def mention_helper(content, tweet):
 def post_tweet_view(request):
     if request.method == 'POST':
         form = TweetForm(request.POST)
+        print(form)
         if form.is_valid():
             data = form.cleaned_data
+            print(data)
             tweet = Tweet.objects.create(user=request.user,
                 content=data['content']
                 )
