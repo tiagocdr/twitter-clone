@@ -1,6 +1,8 @@
 {% extends 'index.html' %}
 {% block content %}
-    <div class='user'>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
         <h2>{{user}}</h2>
         <p>Number of tweets: {{num_tweets}}</p>
         {% if not request.user == user %}
@@ -12,13 +14,16 @@
         {% endif %}
         <div class="container">
             {% for t in tweets %}
-            <div class="tweet">
-                <p><a href="/user/{{t.user.id}}">{{t.user}}</a></p>
+            <div class="post-preview">
+                <p class='post-title'><a href="/user/{{t.user.id}}">{{t.user}}</a></p>
                 <p>{{t.content}}</p>
-                <p>{{t.timestamp}}</p>
+                <p class="post-subtitle">{{t.timestamp}}</p>
                 <p><a href="/tweet/{{t.id}}">Detail</a></p>
             </div>
+            <hr>
             {% endfor %}
         </div>
     </div>
+</div>
+
 {% endblock %}

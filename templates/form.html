@@ -1,20 +1,38 @@
 {% extends 'index.html' %}
 {% block content %}
-    <div class='forms'>
+<div style="display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;">
         {% if request.path == '/signup/' %}
         <h2>Sign up now!</h2>
         {% else %}
         <h2>Login now!</h2>
         {% endif %}
-        <form action="" method="post">
-            {%  csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" value = 'Share'>
+        <!-- <form action="" method="post" id="contactForm" name="sentMessage">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+                {%  csrf_token %}
+                {{ form.as_p }}
+                <br />
+                <div id="success"></div>
+                <button class="btn btn-primary" id="sendMessageButton" type="submit">Send</button>
+            </div>
+        </form> -->
+
+        <form action="" method="post" id="contactForm" name="sentMessage" >
+            <div >
+                {%  csrf_token %}
+                {{ form.as_p }}
+                <br />
+                <div id="success"></div>
+                <button class="btn btn-primary" id="sendMessageButton" type="submit">Send</button>
+            </div>
         </form>
+        <br>
         {% if request.path == '/signup/' %}
         <a href="/login/">Already a member? Login</a>
         {% else %}
         <a href="/signup/">New Member ? Sign Up</a>
         {% endif %}
-    </div>
+</div>
 {% endblock %}

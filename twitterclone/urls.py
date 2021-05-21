@@ -19,6 +19,9 @@ from authentication.views import login_view, logout_view, signup_view
 from twitteruser.views import landing_view, user_view, follow_user, unfollow_user
 from tweet.views import post_tweet_view, tweet_view
 from notification.views import notification_view
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('', landing_view, name='home'),
     path('user/<int:user_id>/', user_view,),
